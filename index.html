@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fairytale Finder - Interface Mockups</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Georgia', serif;
+            color: #2c3e50;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .mockup {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .mockup:hover {
+            transform: translateY(-5px);
+        }
+
+        .phone-frame {
+            width: 280px;
+            height: 580px;
+            background: #1a1a1a;
+            border-radius: 25px;
+            padding: 15px;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .screen {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .mockup-title {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* Welcome Screen */
+        .welcome-screen {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .mountains {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(to top, #2c3e50 0%, #3498db 100%);
+            clip-path: polygon(0% 100%, 15% 80%, 35% 85%, 55% 70%, 75% 85%, 90% 75%, 100% 80%, 100% 100%);
+        }
+
+        .sun {
+            position: absolute;
+            top: 15%;
+            right: 20%;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, #f39c12 0%, #e74c3c 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(243, 156, 18, 0.6);
+        }
+
+        .rainbow {
+            position: absolute;
+            top: 25%;
+            left: 10%;
+            right: 10%;
+            height: 80px;
+            background: linear-gradient(to right, 
+                transparent 0%, #e74c3c 10%, #e67e22 20%, #f1c40f 30%, 
+                #27ae60 40%, #3498db 50%, #9b59b6 60%, transparent 70%);
+            border-radius: 100px 100px 0 0;
+            opacity: 0.7;
+        }
+
+        .unicorn {
+            position: absolute;
+            bottom: 45%;
+            left: 20%;
+            font-size: 40px;
+            animation: bounce 2s infinite;
+        }
+
+        .forest-trees {
+            position: absolute;
+            bottom: 35%;
+            left: 0;
+            right: 0;
+            height: 25%;
+            background: linear-gradient(to top, #27ae60 0%, #2ecc71 100%);
+            clip-path: polygon(0% 100%, 5% 80%, 15% 90%, 25% 75%, 35% 85%, 45% 70%, 55% 80%, 65% 65%, 75% 75%, 85% 60%, 95% 70%, 100% 80%, 100% 100%);
+        }
+
+        .path {
+            position: absolute;
+            bottom: 35%;
+            left: 45%;
+            width: 10%;
+            height: 30%;
+            background: linear-gradient(to top, #f4d03f 0%, #f7dc6f 100%);
+            border-radius: 50px 50px 0 0;
+        }
+
+        .welcome-text {
+            z-index: 10;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .app-title {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .tagline {
+            font-size: 16px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .start-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+
+        .start-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Chat Screen */
+        .chat-screen {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .companion-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff9a9e, #fecfef);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            max-width: 80%;
+        }
+
+        .message.ai {
+            align-self: flex-start;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .message-bubble {
+            padding: 12px 16px;
+            border-radius: 18px;
+            display: inline-block;
+            max-width: 100%;
+        }
+
+        .ai .message-bubble {
+            background: rgba(255,255,255,0.9);
+            color: #2c3e50;
+        }
+
+        .user .message-bubble {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .chat-input {
+            padding: 15px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            display: flex;
+            gap: 10px;
+        }
+
+        .message-input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.9);
+        }
+
+        .send-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        /* Virtual Home Screen */
+        .home-screen {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .home-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200"><defs><linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23ff9a9e"/><stop offset="100%" stop-color="%23fecfef"/></linearGradient></defs><rect width="300" height="200" fill="url(%23sky)"/></svg>') center/cover;
+        }
+
+        .home-mountains {
+            position: absolute;
+            bottom: 30%;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(to top, #34495e 0%, #3498db 100%);
+            clip-path: polygon(0% 100%, 20% 70%, 40% 80%, 60% 60%, 80% 75%, 100% 65%, 100% 100%);
+        }
+
+        .home-house {
+            position: absolute;
+            bottom: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 60px;
+            background: #8b4513;
+            z-index: 5;
+        }
+
+        .house-roof {
+            position: absolute;
+            top: -30px;
+            left: -10px;
+            right: -10px;
+            height: 40px;
+            background: #d32f2f;
+            clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+        }
+
+        .house-door {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 30px;
+            background: #795548;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .floating-items {
+            position: absolute;
+            top: 20%;
+            left: 10%;
+            right: 10%;
+            bottom: 70%;
+            z-index: 10;
+        }
+
+        .decoration-item {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .decoration-item:hover {
+            transform: scale(1.2);
+        }
+
+        .item1 { top: 20%; left: 20%; animation-delay: 0s; }
+        .item2 { top: 40%; right: 25%; animation-delay: 1s; }
+        .item3 { top: 60%; left: 30%; animation-delay: 2s; }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .mini-unicorn {
+            position: absolute;
+            bottom: 45%;
+            right: 30%;
+            font-size: 25px;
+            animation: bounce 3s infinite;
+            animation-delay: 1s;
+        }
+
+        .sparkles {
+            position: absolute;
+            top: 10%;
+            left: 5%;
+            right: 5%;
+            bottom: 10%;
+            pointer-events: none;
+        }
+
+        .sparkle {
+            position: absolute;
+            color: #f1c40f;
+            font-size: 12px;
+            animation: twinkle 2s infinite;
+        }
+
+        .sparkle:nth-child(1) { top: 15%; left: 20%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { top: 35%; right: 15%; animation-delay: 0.5s; }
+        .sparkle:nth-child(3) { top: 55%; left: 30%; animation-delay: 1s; }
+        .sparkle:nth-child(4) { top: 75%; right: 25%; animation-delay: 1.5s; }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Navigation */
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 12px;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .nav-item:hover {
+            color: #ff6b6b;
+        }
+
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 2px;
+        }
+
+        .description {
+            padding: 20px;
+            text-align: center;
+            background: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .description h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+
+        .description p {
+            margin: 10px 0;
+            color: #666;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Welcome Screen Mockup -->
+        <div class="mockup">
+            <div class="mockup-title">Welcome Screen</div>
+            <div class="phone-frame">
+                <div class="screen">
+                    <div class="welcome-screen">
+                        <div class="mountains"></div>
+                        <div class="forest-trees"></div>
+                        <div class="path"></div>
+                        <div class="sun"></div>
+                        <div class="rainbow"></div>
+                        <div class="unicorn">🦄</div>
+                        <div class="sparkles">
+                            <div class="sparkle">✨</div>
+                            <div class="sparkle">✨</div>
+                            <div class="sparkle">✨</div>
+                            <div class="sparkle">✨</div>
+                        </div>
+                        <div class="welcome-text">
+                            <div class="app-title">Fairytale Finder</div>
+                            <div class="tagline">Your journey to true love begins</div>
+                            <button class="start-btn">Begin Your Story</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="description">
+                <h3>Magical Welcome Experience</h3>
+                <p>Users enter a dreamlike world with unicorns, rainbows, and enchanted forests. The mountain backdrop suggests the journey ahead, while sparkling effects create an immediate sense of magic and possibility.</p>
+            </div>
+        </div>
+
+        <!-- AI Companion Chat Mockup -->
+        <div class="mockup">
+            <div class="mockup-title">AI Companion Chat</div>
+            <div class="phone-frame">
+                <div class="screen">
+                    <div class="chat-screen">
+                        <div class="chat-header">
+                            <div class="companion-avatar">🦄</div>
+                            <div>
+                                <div style="font-weight: bold; color: white;">Luna</div>
+                                <div style="font-size: 12px; color: rgba(255,255,255,0.8);">Your Dream Companion</div>
+                            </div>
+                        </div>
+                        <div class="chat-messages">
+                            <div class="message ai">
+                                <div class="message-bubble">
+                                    Welcome to our magical journey! I'm Luna, and I'll be your companion as we explore this enchanted realm together. ✨
+                                </div>
+                            </div>
+                            <div class="message user">
+                                <div class="message-bubble">
+                                    Hi Luna! This place looks amazing. What adventures await us?
+                                </div>
+                            </div>
+                            <div class="message ai">
+                                <div class="message-bubble">
+                                    I'm so excited you're here! We'll build our dream home, explore mystical forests, and discover what truly matters to your heart. Ready for our first quest? 🌟
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-input">
+                            <input type="text" class="message-input" placeholder="Share your thoughts...">
+                            <button class="send-btn">Send</button>
+                        </div>
+                        <div class="sparkles">
+                            <div class="sparkle">✨</div>
+                            <div class="sparkle">✨</div>
+                            <div class="sparkle">✨</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="description">
+                <h3>AI Companion Interface</h3>
+                <p>Natural conversation flows with Luna, the AI companion. The interface maintains the magical aesthetic while providing a comfortable chat experience. Sparkles and soft gradients create an emotionally supportive atmosphere.</p>
+            </div>
+        </div>
+
+        <!-- Virtual Home Building Mockup -->
+        <div class="mockup">
+            <div class="mockup-title">Virtual Dream Home</div>
+            <div class="phone-frame">
+                <div class="screen">
+                    <div class="home-screen">
+                        <div class="home-background"></div>
+                        <div class="home-mountains"></div>
+                        <div class="home-house">
+                            <div class="house-roof"></div>
+                            <div class="house-door"></div>
+                        </div>
+                        <div class="mini-unicorn">🦄</div>
+                        <div class="floating-items">
+                            <div class="decoration-item item1">🌸</div>
+                            <div class="decoration-item item2">🌟</div>
+                            <div class="decoration-item item3">🦋</div>
+                        </div>
+                        <div class="sparkles">
+                            <div class="sparkle">✨</div>
+                            <div class="sparkle">✨</div>
+                            <div class="sparkle">✨</div>
+                            <div class="sparkle">✨</div>
+                        </div>
+                        <div class="bottom-nav">
+                            <div class="nav-item">
+                                <div class="nav-icon">🏠</div>
+                                <div>Home</div>
+                            </div>
+                            <div class="nav-item">
+                                <div class="nav-icon">💬</div>
+                                <div>Chat</div>
+                            </div>
+                            <div class="nav-item">
+                                <div class="nav-icon">🎮</div>
+                                <div>Quest</div>
+                            </div>
+                            <div class="nav-item">
+                                <div class="nav-icon">❤️</div>
+                                <div>Match</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="description">
+                <h3>Dream Home Building</h3>
+                <p>Users collaborate with their AI companion to build and decorate a virtual home against a stunning mountain backdrop. Floating decoration items can be placed around the scene, while a friendly unicorn adds whimsy to the experience.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
